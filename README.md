@@ -49,14 +49,12 @@ BaZi is a traditional Chinese astrological system that analyzes the four pillars
 
 ## ⚡ Features
 
-<div align="center">
 
 ### 🏛️ **Core BaZi System**
 [![Core](https://img.shields.io/badge/Core-BaZi%20Charts-blue?style=for-the-badge)](https://github.com/rokoss21/bazi-lib#core-module)
 [![Elements](https://img.shields.io/badge/Elements-Wu%20Xing-green?style=for-the-badge)](https://github.com/rokoss21/bazi-lib#elements-module)
 [![Analysis](https://img.shields.io/badge/Analysis-Complete-orange?style=for-the-badge)](https://github.com/rokoss21/bazi-lib#analysis-features)
 
-</div>
 
 #### 🌟 **Chart Creation & Analysis**
 - **Four Pillars Calculation** - Automatic computation of year, month, day, and hour pillars with astronomical precision
@@ -165,13 +163,11 @@ The heart of the library containing all essential BaZi classes and analyzers.
 
 ## 📄 License
 
-<div align="center">
 
 **This project is licensed under the Apache License 2.0**
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
 
-</div>
 
 **Apache License 2.0** provides:
 - ✅ **Commercial use** - You can use this library in commercial projects
@@ -187,7 +183,6 @@ For full license text, see [LICENSE](LICENSE) file.
 
 ## 🌟 Support & Community
 
-<div align="center">
 
 ### 📞 **Get Help**
 [![GitHub Issues](https://img.shields.io/badge/GitHub-Issues-black?style=for-the-badge&logo=github)](https://github.com/rokoss21/bazi-lib/issues)
