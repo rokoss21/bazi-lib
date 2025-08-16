@@ -1,5 +1,3 @@
-<div align="center">
-
 # 🌟 BaZi Library
 
 **Professional Python library for Chinese BaZi astrology (四柱八字) - Complete Four Pillars of Destiny system with element analysis, personality insights, career guidance, and relationship compatibility.**
@@ -13,13 +11,11 @@
 
 [Features](#-features) • [Documentation](#-documentation) • [Examples](#-examples)
 
-</div>
 
 ---
 
 ## 👨‍💻 Author
 
-<div align="center">
 
 **Emil Rokossovsiy**  
 *Professional Astrology Software Developer*
@@ -28,7 +24,6 @@
 [![Email](https://img.shields.io/badge/Email-ecsiar%40gmail.com-red?style=for-the-badge&logo=gmail)](mailto:ecsiar@gmail.com)
 [![Website](https://img.shields.io/badge/Website-astrovisor.io-purple?style=for-the-badge&logo=globe)](https://astrovisor.io/)
 
-</div>
 
 ---
 
@@ -95,80 +90,9 @@ BaZi is a traditional Chinese astrological system that analyzes the four pillars
 
 ---
 
-## 🎯 Quick Start
-
-### **Basic Chart Creation**
-```python
-from bazi_lib.core import BaziChart
-from datetime import datetime
-
-# Create a BaZi chart
-chart = BaziChart(
-    birth_date=datetime(1990, 5, 15, 14, 30),
-    timezone='Asia/Shanghai',
-    longitude=121.4737,
-    gender='male'
-)
-
-# Get basic information
-print(f"Day Master: {chart.day_master.display_name}")
-print(f"Element: {chart.day_master_element.display_name}")
-print(f"Polarity: {chart.day_master.polarity.display_name}")
-```
-
-### **Complete Analysis**
-```python
-# Get comprehensive analysis
-analysis = chart.get_complete_analysis()
-
-# Element distribution
-element_dist = chart.get_element_distribution()
-print(f"Element distribution: {element_dist}")
-
-# Hidden stems
-hidden = chart.get_hidden_stems()
-print(f"Hidden stems: {hidden['total_hidden_stems']}")
-
-# Symbolic stars
-stars = chart.get_symbolic_stars()
-print(f"Symbolic stars: {len(stars['stars'])}")
-```
-
-### **Advanced Analysis**
-```python
-from bazi_lib.core import (
-    SymbolicStarsAnalyzer,
-    TwelvePalacesCalculator,
-    CompatibilityAnalyzer
-)
-
-# Symbolic stars analysis
-stars_analyzer = SymbolicStarsAnalyzer(chart)
-stars = stars_analyzer.analyze_symbolic_stars()
-
-# Twelve palaces analysis
-palaces_calc = TwelvePalacesCalculator(chart)
-palaces = palaces_calc.calculate_twelve_palaces()
-print(f"Career palace: {palaces.career_palace.palace_type.display_name}")
-
-# Compatibility analysis
-chart2 = BaziChart(
-    birth_date=datetime(1992, 8, 20, 10, 15),
-    timezone='Asia/Shanghai',
-    longitude=121.4737,
-    gender='female'
-)
-
-compat_analyzer = CompatibilityAnalyzer()
-compatibility = compat_analyzer.analyze_compatibility(chart, chart2)
-print(f"Compatibility score: {compatibility.score}/100")
-```
-
----
 
 ## 🏗️ Architecture
 
-<div align="center">
 
 ### 📁 **Module Structure**
 ```
@@ -181,7 +105,6 @@ bazi_lib/
 └── 🛠️ utils/          # Utility functions
 ```
 
-</div>
 
 ### 🏗️ **Core Module (`bazi_lib.core`)**
 The heart of the library containing all essential BaZi classes and analyzers.
@@ -274,11 +197,9 @@ For full license text, see [LICENSE](LICENSE) file.
 [![Website](https://img.shields.io/badge/Website-astrovisor.io-purple?style=for-the-badge&logo=globe)](https://astrovisor.io/)
 [![GitHub Profile](https://img.shields.io/badge/GitHub-rokoss21-black?style=for-the-badge&logo=github)](https://github.com/rokoss21/)
 
-</div>
 
 ---
 
-<div align="center">
 
 ## 🌟 **Star this repository if you find it useful!**
 
@@ -296,8 +217,6 @@ For full license text, see [LICENSE](LICENSE) file.
 [![GitHub](https://img.shields.io/badge/GitHub-rokoss21-black?style=for-the-badge&logo=github)](https://github.com/rokoss21/)
 [![Email](https://img.shields.io/badge/Email-ecsiar%40gmail.com-red?style=for-the-badge&logo=gmail)](mailto:ecsiar@gmail.com)
 [![Website](https://img.shields.io/badge/Website-astrovisor.io-purple?style=for-the-badge&logo=globe)](https://astrovisor.io/)
-
-</div>
 
 
 
