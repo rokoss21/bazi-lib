@@ -161,72 +161,7 @@ The heart of the library containing all essential BaZi classes and analyzers.
 
 ---
 
-## 📄 License
-
-
-**This project is licensed under the Apache License 2.0**
-
-[![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
-
-
-**Apache License 2.0** provides:
-- ✅ **Commercial use** - You can use this library in commercial projects
-- ✅ **Modification** - You can modify and distribute the code
-- ✅ **Patent protection** - Protection from patent claims
-- ✅ **Attribution** - You must include the original license and copyright notice
-
-**Copyright (c) 2024 Emil Rokossovsiy**
-
-For full license text, see [LICENSE](LICENSE) file.
-
----
-
-## 🌟 Support & Community
-
-
-### 📞 **Get Help**
-[![GitHub Issues](https://img.shields.io/badge/GitHub-Issues-black?style=for-the-badge&logo=github)](https://github.com/rokoss21/bazi-lib/issues)
-[![Email Support](https://img.shields.io/badge/Email-Support-red?style=for-the-badge&logo=gmail)](mailto:ecsiar@gmail.com)
-
-### 🌐 **Connect**
-[![Website](https://img.shields.io/badge/Website-astrovisor.io-purple?style=for-the-badge&logo=globe)](https://astrovisor.io/)
-[![GitHub Profile](https://img.shields.io/badge/GitHub-rokoss21-black?style=for-the-badge&logo=github)](https://github.com/rokoss21/)
-
-
----
-
-
-## 🌟 **Star this repository if you find it useful!**
-
-[![GitHub Stars](https://img.shields.io/badge/GitHub-Stars-black?style=for-the-badge&logo=github)](https://github.com/rokoss21/bazi-lib)
-[![GitHub Forks](https://img.shields.io/badge/GitHub-Forks-black?style=for-the-badge&logo=github)](https://github.com/rokoss21/bazi-lib)
-
----
-
-**Developed with ❤️ by Emil Rokossovsiy**  
-**Version**: 1.0.0  
-**Python Support**: 3.7+  
-**Status**: 🚀 Production Ready  
-**License**: Apache 2.0
-
-[![GitHub](https://img.shields.io/badge/GitHub-rokoss21-black?style=for-the-badge&logo=github)](https://github.com/rokoss21/)
-[![Email](https://img.shields.io/badge/Email-ecsiar%40gmail.com-red?style=for-the-badge&logo=gmail)](mailto:ecsiar@gmail.com)
-[![Website](https://img.shields.io/badge/Website-astrovisor.io-purple?style=for-the-badge&logo=globe)](https://astrovisor.io/)
-
-
-
 # 📚 BaZi Library - Complete API Reference
-
-## 📋 Table of Contents
-
-1. [Core Module - bazi_lib.core](#core-module---bazilibcore)
-2. [Calendar Module - bazi_lib.calendar](#calendar-module---bazilibcalendar)
-3. [Elements Module - bazi_lib.elements](#elements-module---bazilibelements)
-4. [Interpretation Module - bazi_lib.interpretation](#interpretation-module---bazilibinterpretation)
-5. [Pillars Module - bazi_lib.pillars](#pillars-module---bazilibpillars)
-6. [Utils Module - bazi_lib.utils](#utils-module---bazilibutils)
-7. [Usage Examples](#usage-examples)
-8. [Error Handling](#error-handling)
 
 ---
 
@@ -1142,26 +1077,56 @@ results = analyze_multiple_charts(charts_data)
 
 ---
 
-## 📚 Additional Resources
+## 📄 License
 
-### Documentation
-- **Main README**: [README.md](README.md)
-- **Python Guide**: [README_PYTHON.md](README_PYTHON.md)
-- **Production Guide**: [PRODUCTION_README.md](PRODUCTION_README.md)
+<div align="center">
 
-### Examples
-- **Basic Examples**: [examples/basic_example.py](examples/basic_example.py)
-- **Advanced Examples**: [examples/advanced_interpretation.py](examples/advanced_interpretation.py)
-- **Complete Analysis**: [examples/complete_bazi_analysis.py](examples/complete_bazi_analysis.py)
+**This project is licensed under the Apache License 2.0**
 
-### Testing
-- **Test Suite**: [tests/](tests/)
-- **Run Tests**: `pytest tests/ -v`
-- **Coverage**: `pytest tests/ --cov=bazi_lib --cov-report=html`
+[![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
+
+</div>
+
+**Apache License 2.0** provides:
+- ✅ **Commercial use** - You can use this library in commercial projects
+- ✅ **Modification** - You can modify and distribute the code
+- ✅ **Patent protection** - Protection from patent claims
+- ✅ **Attribution** - You must include the original license and copyright notice
+
+**Copyright (c) 2024 Emil Rokossovsiy**
+
+For full license text, see [LICENSE](LICENSE) file.
 
 ---
 
-**Status**: 🚀 Production Ready  
+## 🌟 Support & Community
+
+
+### 📞 **Get Help**
+[![GitHub Issues](https://img.shields.io/badge/GitHub-Issues-black?style=for-the-badge&logo=github)](https://github.com/rokoss21/bazi-lib/issues)
+[![Email Support](https://img.shields.io/badge/Email-Support-red?style=for-the-badge&logo=gmail)](mailto:ecsiar@gmail.com)
+
+### 🌐 **Connect**
+[![Website](https://img.shields.io/badge/Website-astrovisor.io-purple?style=for-the-badge&logo=globe)](https://astrovisor.io/)
+[![GitHub Profile](https://img.shields.io/badge/GitHub-rokoss21-black?style=for-the-badge&logo=github)](https://github.com/rokoss21/)
+
+
+---
+
+
+## 🌟 **Star this repository if you find it useful!**
+
+[![GitHub Stars](https://img.shields.io/badge/GitHub-Stars-black?style=for-the-badge&logo=github)](https://github.com/rokoss21/bazi-lib)
+[![GitHub Forks](https://img.shields.io/badge/GitHub-Forks-black?style=for-the-badge&logo=github)](https://github.com/rokoss21/bazi-lib)
+
+---
+
+**Developed with ❤️ by Emil Rokossovsiy**  
 **Version**: 1.0.0  
-**Last Updated**: $(date)  
-**Maintainer**: Development Team
+**Python Support**: 3.7+  
+**Status**: 🚀 Production Ready  
+**License**: Apache 2.0
+
+[![GitHub](https://img.shields.io/badge/GitHub-rokoss21-black?style=for-the-badge&logo=github)](https://github.com/rokoss21/)
+[![Email](https://img.shields.io/badge/Email-ecsiar%40gmail.com-red?style=for-the-badge&logo=gmail)](mailto:ecsiar@gmail.com)
+[![Website](https://img.shields.io/badge/Website-astrovisor.io-purple?style=for-the-badge&logo=globe)](https://astrovisor.io/)
