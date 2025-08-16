@@ -1,3 +1,306 @@
+<div align="center">
+
+# 🌟 BaZi Library
+
+**Professional Python library for Chinese BaZi astrology (四柱八字) - Complete Four Pillars of Destiny system with element analysis, personality insights, career guidance, and relationship compatibility.**
+
+[![Python Version](https://img.shields.io/badge/python-3.7%2B-blue.svg)](https://python.org)
+[![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](LICENSE)
+[![Documentation](https://img.shields.io/badge/docs-complete-blue.svg)](API_REFERENCE.md)
+[![Website](https://img.shields.io/badge/Website-astrovisor.io-purple?style=for-the-badge&logo=globe)](https://astrovisor.io/)
+
+**🚀 Production Ready | 🌍 International | 🏛️ Professional | 📚 Comprehensive**
+
+[Features](#-features) • [Documentation](#-documentation) • [Examples](#-examples)
+
+</div>
+
+---
+
+## 👨‍💻 Author
+
+<div align="center">
+
+**Emil Rokossovsiy**  
+*Professional Astrology Software Developer*
+
+[![GitHub](https://img.shields.io/badge/GitHub-rokoss21-black?style=for-the-badge&logo=github)](https://github.com/rokoss21/)
+[![Email](https://img.shields.io/badge/Email-ecsiar%40gmail.com-red?style=for-the-badge&logo=gmail)](mailto:ecsiar@gmail.com)
+[![Website](https://img.shields.io/badge/Website-astrovisor.io-purple?style=for-the-badge&logo=globe)](https://astrovisor.io/)
+
+</div>
+
+---
+
+## 🌟 About
+
+**BaZi Library** is a comprehensive, production-ready Python implementation of the ancient Chinese BaZi (四柱八字) astrology system, also known as "Four Pillars of Destiny." This library provides professional-grade tools for creating and analyzing BaZi charts, including advanced element analysis, personality interpretation, career guidance, and compatibility matching.
+
+### 🎯 **What is BaZi?**
+BaZi is a traditional Chinese astrological system that analyzes the four pillars of birth (year, month, day, and hour) to reveal personality traits, life patterns, and destiny influences. It's based on the interaction of the Five Elements (Wu Xing), Heavenly Stems (Tian Gan), and Earthly Branches (Di Zhi).
+
+### 🚀 **Why Choose BaZi Library?**
+- ✅ **Production Ready** - Comprehensive testing and professional documentation
+- ✅ **International** - Full English documentation and API
+- ✅ **Professional** - Enterprise-grade code quality and architecture
+- ✅ **Comprehensive** - Complete BaZi analysis system
+- ✅ **Extensible** - Modular design for easy customization
+- ✅ **Well Documented** - Extensive examples and API reference
+
+### 🌐 **Try the Engine in Action**
+**Experience the full power of our BaZi analysis engine on [astrovisor.io](https://astrovisor.io/) - where you can create charts, get detailed interpretations, and explore all the library's capabilities through an intuitive web interface.**
+
+---
+
+## ⚡ Features
+
+<div align="center">
+
+### 🏛️ **Core BaZi System**
+[![Core](https://img.shields.io/badge/Core-BaZi%20Charts-blue?style=for-the-badge)](https://github.com/rokoss21/bazi-lib#core-module)
+[![Elements](https://img.shields.io/badge/Elements-Wu%20Xing-green?style=for-the-badge)](https://github.com/rokoss21/bazi-lib#elements-module)
+[![Analysis](https://img.shields.io/badge/Analysis-Complete-orange?style=for-the-badge)](https://github.com/rokoss21/bazi-lib#analysis-features)
+
+</div>
+
+#### 🌟 **Chart Creation & Analysis**
+- **Four Pillars Calculation** - Automatic computation of year, month, day, and hour pillars with astronomical precision
+- **Element Distribution** - Comprehensive Wu Xing (Five Elements) analysis with balance calculations
+- **Hidden Stems** - Advanced analysis of concealed heavenly stems and their influence
+- **Luck Pillars** - Fortune prediction and life cycle analysis with timing calculations
+
+#### 🔮 **Advanced Interpretations**
+- **Personality Analysis** - Deep character insights based on day master and element balance
+- **Career Guidance** - Professional recommendations and industry suggestions based on elemental strengths
+- **Relationship Compatibility** - Comprehensive compatibility analysis between two charts with scoring
+- **Health Insights** - Element balance analysis and health recommendations
+
+#### 🏛️ **Traditional Components**
+- **Symbolic Stars (Shen Sha)** - Analysis of auspicious and inauspicious influences with detailed interpretations
+- **Twelve Palaces** - Life aspect analysis covering career, wealth, relationships, health, and more
+- **Na Yin (Melodic Elements)** - Spiritual development guidance and career path recommendations
+- **Useful God** - Determination of favorable directions, elements, and life strategies
+
+#### 🛠️ **Professional Tools**
+- **Calendar Support** - Chinese calendar and solar terms integration with astronomical accuracy
+- **Timezone Handling** - Precise global time calculations and daylight saving time support
+- **Performance Optimization** - Intelligent caching and lazy loading for memory efficiency
+- **Error Handling** - Comprehensive exception management with detailed error messages
+
+#### 🌍 **International Features**
+- **Multi-language Support** - English, Chinese characters, and Pinyin support
+- **Cultural Context** - Traditional Chinese astrology principles with modern interpretations
+- **Global Compatibility** - Works with any timezone and geographical location
+- **Professional Standards** - Enterprise-grade code quality and documentation
+
+---
+
+## 🎯 Quick Start
+
+### **Basic Chart Creation**
+```python
+from bazi_lib.core import BaziChart
+from datetime import datetime
+
+# Create a BaZi chart
+chart = BaziChart(
+    birth_date=datetime(1990, 5, 15, 14, 30),
+    timezone='Asia/Shanghai',
+    longitude=121.4737,
+    gender='male'
+)
+
+# Get basic information
+print(f"Day Master: {chart.day_master.display_name}")
+print(f"Element: {chart.day_master_element.display_name}")
+print(f"Polarity: {chart.day_master.polarity.display_name}")
+```
+
+### **Complete Analysis**
+```python
+# Get comprehensive analysis
+analysis = chart.get_complete_analysis()
+
+# Element distribution
+element_dist = chart.get_element_distribution()
+print(f"Element distribution: {element_dist}")
+
+# Hidden stems
+hidden = chart.get_hidden_stems()
+print(f"Hidden stems: {hidden['total_hidden_stems']}")
+
+# Symbolic stars
+stars = chart.get_symbolic_stars()
+print(f"Symbolic stars: {len(stars['stars'])}")
+```
+
+### **Advanced Analysis**
+```python
+from bazi_lib.core import (
+    SymbolicStarsAnalyzer,
+    TwelvePalacesCalculator,
+    CompatibilityAnalyzer
+)
+
+# Symbolic stars analysis
+stars_analyzer = SymbolicStarsAnalyzer(chart)
+stars = stars_analyzer.analyze_symbolic_stars()
+
+# Twelve palaces analysis
+palaces_calc = TwelvePalacesCalculator(chart)
+palaces = palaces_calc.calculate_twelve_palaces()
+print(f"Career palace: {palaces.career_palace.palace_type.display_name}")
+
+# Compatibility analysis
+chart2 = BaziChart(
+    birth_date=datetime(1992, 8, 20, 10, 15),
+    timezone='Asia/Shanghai',
+    longitude=121.4737,
+    gender='female'
+)
+
+compat_analyzer = CompatibilityAnalyzer()
+compatibility = compat_analyzer.analyze_compatibility(chart, chart2)
+print(f"Compatibility score: {compatibility.score}/100")
+```
+
+---
+
+## 🏗️ Architecture
+
+<div align="center">
+
+### 📁 **Module Structure**
+```
+bazi_lib/
+├── 🏗️ core/           # Core BaZi functionality
+├── 📅 calendar/        # Chinese calendar & solar terms
+├── 🧩 elements/        # Element analysis tools
+├── 🧠 interpretation/  # Personality & career analysis
+├── 🏛️ pillars/         # Pillar management
+└── 🛠️ utils/          # Utility functions
+```
+
+</div>
+
+### 🏗️ **Core Module (`bazi_lib.core`)**
+The heart of the library containing all essential BaZi classes and analyzers.
+
+#### **Main Classes**
+- **`BaziChart`** - Primary chart creation and analysis class with comprehensive methods
+- **`TianGan`** - Heavenly Stems (天干) management with element and polarity properties
+- **`DiZhi`** - Earthly Branches (地支) management with animal associations and hidden stems
+- **`WuXing`** - Five Elements (五行) system with generation and control cycles
+- **`TenGod`** - Ten Gods analysis system for relationship dynamics
+
+#### **Analyzers**
+- **`SymbolicStarsAnalyzer`** - Shen Sha (神煞) analysis with detailed interpretations
+- **`TwelvePalacesCalculator`** - Twelve Palaces calculation for life aspect analysis
+- **`NaYinCalculator`** - Na Yin (纳音) analysis for spiritual and career guidance
+- **`UsefulGodAnalyzer`** - Useful God determination for favorable directions
+- **`CompatibilityAnalyzer`** - Relationship compatibility with scoring system
+- **`HiddenStemsAnalyzer`** - Hidden stems analysis for deeper chart insights
+- **`LuckPillarsCalculator`** - Luck pillars calculation for timing predictions
+
+### 📅 **Calendar Module (`bazi_lib.calendar`)**
+- **`ChineseCalendar`** - Chinese calendar conversion with cycle calculations
+- **`SolarTerms`** - 24 solar terms calculation with astronomical precision
+
+### 🧠 **Interpretation Module (`bazi_lib.interpretation`)**
+- **`PersonalityAnalyzer`** - Day master personality analysis with trait mapping
+- **`CareerAnalyzer`** - Career potential and recommendations based on elements
+
+---
+
+## 🔮 **Advanced Capabilities**
+
+### **Element Analysis System**
+- **Wu Xing Cycles** - Complete generation, control, and weakening cycles
+- **Element Balance** - Automatic calculation of element distribution and balance
+- **Favorable Elements** - Identification of beneficial elements for personal growth
+- **Element Interactions** - Detailed analysis of how elements affect each other
+
+### **Personality & Career Analysis**
+- **Day Master Analysis** - Deep personality insights based on birth day element
+- **Career Mapping** - Industry recommendations based on elemental strengths
+- **Life Path Guidance** - Direction suggestions for personal development
+- **Strength Assessment** - Evaluation of personal elemental balance
+
+### **Relationship & Compatibility**
+- **Chart Comparison** - Detailed analysis of two birth charts
+- **Compatibility Scoring** - Numerical scoring system (0-100) for relationships
+- **Element Harmony** - Analysis of elemental compatibility between partners
+- **Timing Insights** - Best periods for relationship development
+
+### **Traditional Astrology Features**
+- **Solar Terms** - 24 traditional Chinese solar terms with precise calculations
+- **Chinese Calendar** - Traditional calendar system integration
+- **Astronomical Accuracy** - Precise calculations based on astronomical data
+- **Cultural Context** - Traditional interpretations with modern applications
+
+---
+
+## 📄 License
+
+<div align="center">
+
+**This project is licensed under the Apache License 2.0**
+
+[![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
+
+</div>
+
+**Apache License 2.0** provides:
+- ✅ **Commercial use** - You can use this library in commercial projects
+- ✅ **Modification** - You can modify and distribute the code
+- ✅ **Patent protection** - Protection from patent claims
+- ✅ **Attribution** - You must include the original license and copyright notice
+
+**Copyright (c) 2024 Emil Rokossovsiy**
+
+For full license text, see [LICENSE](LICENSE) file.
+
+---
+
+## 🌟 Support & Community
+
+<div align="center">
+
+### 📞 **Get Help**
+[![GitHub Issues](https://img.shields.io/badge/GitHub-Issues-black?style=for-the-badge&logo=github)](https://github.com/rokoss21/bazi-lib/issues)
+[![Email Support](https://img.shields.io/badge/Email-Support-red?style=for-the-badge&logo=gmail)](mailto:ecsiar@gmail.com)
+
+### 🌐 **Connect**
+[![Website](https://img.shields.io/badge/Website-astrovisor.io-purple?style=for-the-badge&logo=globe)](https://astrovisor.io/)
+[![GitHub Profile](https://img.shields.io/badge/GitHub-rokoss21-black?style=for-the-badge&logo=github)](https://github.com/rokoss21/)
+
+</div>
+
+---
+
+<div align="center">
+
+## 🌟 **Star this repository if you find it useful!**
+
+[![GitHub Stars](https://img.shields.io/badge/GitHub-Stars-black?style=for-the-badge&logo=github)](https://github.com/rokoss21/bazi-lib)
+[![GitHub Forks](https://img.shields.io/badge/GitHub-Forks-black?style=for-the-badge&logo=github)](https://github.com/rokoss21/bazi-lib)
+
+---
+
+**Developed with ❤️ by Emil Rokossovsiy**  
+**Version**: 1.0.0  
+**Python Support**: 3.7+  
+**Status**: 🚀 Production Ready  
+**License**: Apache 2.0
+
+[![GitHub](https://img.shields.io/badge/GitHub-rokoss21-black?style=for-the-badge&logo=github)](https://github.com/rokoss21/)
+[![Email](https://img.shields.io/badge/Email-ecsiar%40gmail.com-red?style=for-the-badge&logo=gmail)](mailto:ecsiar@gmail.com)
+[![Website](https://img.shields.io/badge/Website-astrovisor.io-purple?style=for-the-badge&logo=globe)](https://astrovisor.io/)
+
+</div>
+
+
+
 # 📚 BaZi Library - Complete API Reference
 
 ## 📋 Table of Contents
