@@ -12,6 +12,9 @@ pub use analysis::strength::{StrengthAnalyzer, DayMasterStrength};
 pub use core::tengod::TenGod;
 pub use analysis::interactions::{InteractionAnalyzer, InteractionType};
 pub use analysis::useful_god::{UsefulGodAnalyzer, UsefulGodResult};
+pub use core::phase::QiPhase;
+pub use analysis::void::VoidAnalyzer;
+pub use analysis::symbolic_stars::SymbolicStarsAnalyzer;
 
 #[cfg(test)]
 mod tests;

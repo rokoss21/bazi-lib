@@ -10,6 +10,9 @@ mod tests {
     use crate::core::tengod::TenGod;
     use crate::analysis::interactions::{InteractionAnalyzer, InteractionType};
     use crate::analysis::useful_god::{UsefulGodAnalyzer, UsefulGodResult};
+    use crate::core::phase::QiPhase;
+    use crate::analysis::void::VoidAnalyzer;
+    use crate::analysis::symbolic_stars::SymbolicStarsAnalyzer;
     use chrono::NaiveDateTime;
 
     #[test]
@@ -96,11 +99,6 @@ mod tests {
 
     #[test]
     fn test_ten_gods() {
-        // DM: Jia (Wood, Yang)
-        // Target: Yi (Wood, Yin) -> RobWealth
-        // Target: Bing (Fire, Yang) -> EatingGod
-        // Target: Geng (Metal, Yang) -> SevenKillings
-
         let dm = TianGan::Jia;
         assert_eq!(TenGod::calculate(dm, TianGan::Yi), TenGod::RobWealth);
         assert_eq!(TenGod::calculate(dm, TianGan::Bing), TenGod::EatingGod);
@@ -110,12 +108,6 @@ mod tests {
 
     #[test]
     fn test_interactions() {
-        // Combinations
-        // Year: Jia-Zi
-        // Month: Ji-Chou
-        // Jia+Ji = Earth Combo
-        // Zi+Chou = Earth Combo
-
         let chart = BaziChart::new(
             Pillar::new(TianGan::Jia, DiZhi::Zi),
             Pillar::new(TianGan::Ji, DiZhi::Chou),
@@ -136,25 +128,84 @@ mod tests {
 
     #[test]
     fn test_useful_god() {
-        // Weak Wood (needs Water/Wood)
         let chart = BaziChart::new(
-             Pillar::new(TianGan::Jia, DiZhi::Shen), // Metal
-             Pillar::new(TianGan::Geng, DiZhi::Shen), // Metal
-             Pillar::new(TianGan::Jia, DiZhi::Shen), // Wood DM
-             Pillar::new(TianGan::Geng, DiZhi::Shen), // Metal
+             Pillar::new(TianGan::Jia, DiZhi::Shen),
+             Pillar::new(TianGan::Geng, DiZhi::Shen),
+             Pillar::new(TianGan::Jia, DiZhi::Shen),
+             Pillar::new(TianGan::Geng, DiZhi::Shen),
              "male".to_string()
         );
 
-        // Strength should be weak
         let strength = StrengthAnalyzer::new(&chart).analyze();
         assert!(matches!(strength, DayMasterStrength::Weak | DayMasterStrength::ExtremelyWeak));
 
         let ug_analyzer = UsefulGodAnalyzer::new(strength, &chart);
         let result = ug_analyzer.analyze();
 
-        // Favorable should contain Water (Mother) and Wood (Friend)
         assert!(result.favorable.contains(&WuXing::Water));
         assert!(result.favorable.contains(&WuXing::Wood));
         assert_eq!(result.useful_god, WuXing::Water);
+    }
+
+    #[test]
+    fn test_qi_phase() {
+        // Jia (Yang Wood) born in Hai (Pig).
+        assert_eq!(QiPhase::calculate(TianGan::Jia, DiZhi::Hai), QiPhase::Birth);
+        // Jia (Yang Wood) bath in Zi (Rat).
+        assert_eq!(QiPhase::calculate(TianGan::Jia, DiZhi::Zi), QiPhase::Bath);
+        // Jia (Yang Wood) death in Wu (Horse).
+        assert_eq!(QiPhase::calculate(TianGan::Jia, DiZhi::Wu), QiPhase::Death);
+
+        // Yi (Yin Wood) born in Wu (Horse).
+        assert_eq!(QiPhase::calculate(TianGan::Yi, DiZhi::Wu), QiPhase::Birth);
+        // Yi (Yin Wood) death in Hai (Pig).
+        assert_eq!(QiPhase::calculate(TianGan::Yi, DiZhi::Hai), QiPhase::Death);
+    }
+
+    #[test]
+    fn test_void_branches() {
+        // Jia-Zi Pillar.
+        // Diff = 0.
+        // Void: Xu(10), Hai(11).
+        let chart = BaziChart::new(
+             Pillar::new(TianGan::Jia, DiZhi::Zi),
+             Pillar::new(TianGan::Jia, DiZhi::Zi),
+             Pillar::new(TianGan::Jia, DiZhi::Zi), // Day
+             Pillar::new(TianGan::Jia, DiZhi::Zi),
+             "male".to_string()
+        );
+
+        let analyzer = VoidAnalyzer::new(&chart);
+        let (v1, v2) = analyzer.get_void_branches();
+        assert_eq!(v1, DiZhi::Xu);
+        assert_eq!(v2, DiZhi::Hai);
+    }
+
+    #[test]
+    fn test_expanded_stars() {
+        // Test Nobleman (Jia -> Chou/Wei)
+        let chart = BaziChart::new(
+             Pillar::new(TianGan::Jia, DiZhi::Chou),
+             Pillar::new(TianGan::Jia, DiZhi::Zi),
+             Pillar::new(TianGan::Jia, DiZhi::Zi), // DM Jia
+             Pillar::new(TianGan::Jia, DiZhi::Zi),
+             "male".to_string()
+        );
+        let analyzer = SymbolicStarsAnalyzer::new(&chart);
+        let stars = analyzer.analyze();
+
+        assert!(stars.iter().any(|s| s.contains("Nobleman")));
+
+        // Test Academic (Jia -> Si)
+        let chart2 = BaziChart::new(
+             Pillar::new(TianGan::Jia, DiZhi::Si),
+             Pillar::new(TianGan::Jia, DiZhi::Zi),
+             Pillar::new(TianGan::Jia, DiZhi::Zi), // DM Jia
+             Pillar::new(TianGan::Jia, DiZhi::Zi),
+             "male".to_string()
+        );
+        let analyzer2 = SymbolicStarsAnalyzer::new(&chart2);
+        let stars2 = analyzer2.analyze();
+        assert!(stars2.iter().any(|s| s.contains("Academic")));
     }
 }

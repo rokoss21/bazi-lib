@@ -9,3 +9,4 @@ pub use dizhi::DiZhi;
 pub use chart::{BaziChart, Pillar};
 pub mod nayin;
 pub mod tengod;
+pub mod phase;
