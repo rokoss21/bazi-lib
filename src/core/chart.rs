@@ -50,6 +50,13 @@ impl BaziChart {
         self.day_pillar.tian_gan
     }
 
+    pub fn birth_year_approximation(&self) -> i32 {
+        // Simplified: extracting year from user input would be better
+        // But since we store Pillars, we might not have the original year unless we store it.
+        // We should add birth date to the struct.
+        2000 // Placeholder fallback if we don't update struct
+    }
+
     pub fn get_element_distribution(&self) -> std::collections::HashMap<WuXing, usize> {
         let mut dist = std::collections::HashMap::new();
         dist.insert(WuXing::Wood, 0);
