@@ -112,7 +112,7 @@ impl Calendar {
             DiZhi::from_index(hour_zhi_idx).unwrap()
         );
 
-        BaziChart::new(year_pillar, month_pillar, day_pillar, hour_pillar, _gender.to_string())
+        BaziChart::new(year_pillar, month_pillar, day_pillar, hour_pillar, _gender.to_string(), date)
     }
 
     fn get_year_gan_zhi(&self, date: NaiveDateTime) -> (usize, usize) {

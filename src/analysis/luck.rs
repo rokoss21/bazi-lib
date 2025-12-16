@@ -45,7 +45,7 @@ impl<'a> LuckPillarsCalculator<'a> {
         // Since we don't have exact solar term dates in the Chart struct yet, we will default to 4 for now to avoid breaking.
         // TODO: Integrate accurate Solar Term dates for precise Age calculation.
         let start_age = 4;
-        let start_year = self.chart.birth_year_approximation() + start_age as i32;
+        let start_year = self.chart.birth_year() + start_age as i32;
 
         let mut pillars = Vec::new();
 

@@ -1,3 +1,4 @@
+use chrono::{NaiveDateTime, Datelike};
 use super::tiangan::TianGan;
 use super::dizhi::DiZhi;
 use super::wuxing::WuXing;
@@ -32,17 +33,18 @@ pub struct BaziChart {
     pub day_pillar: Pillar,
     pub hour_pillar: Pillar,
     pub gender: String, // "male", "female"
-    // We might store original date info too
+    pub birth_date: NaiveDateTime,
 }
 
 impl BaziChart {
-    pub fn new(year: Pillar, month: Pillar, day: Pillar, hour: Pillar, gender: String) -> Self {
+    pub fn new(year: Pillar, month: Pillar, day: Pillar, hour: Pillar, gender: String, birth_date: NaiveDateTime) -> Self {
         Self {
             year_pillar: year,
             month_pillar: month,
             day_pillar: day,
             hour_pillar: hour,
             gender,
+            birth_date,
         }
     }
 
@@ -50,11 +52,8 @@ impl BaziChart {
         self.day_pillar.tian_gan
     }
 
-    pub fn birth_year_approximation(&self) -> i32 {
-        // Simplified: extracting year from user input would be better
-        // But since we store Pillars, we might not have the original year unless we store it.
-        // We should add birth date to the struct.
-        2000 // Placeholder fallback if we don't update struct
+    pub fn birth_year(&self) -> i32 {
+        self.birth_date.year()
     }
 
     pub fn get_element_distribution(&self) -> std::collections::HashMap<WuXing, usize> {

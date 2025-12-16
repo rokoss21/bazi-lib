@@ -75,7 +75,8 @@ mod tests {
             Pillar::new(TianGan::Jia, DiZhi::Yin),
             Pillar::new(TianGan::Jia, DiZhi::Yin),
             Pillar::new(TianGan::Jia, DiZhi::Yin),
-            "male".to_string()
+            "male".to_string(),
+            NaiveDateTime::parse_from_str("2024-01-01 12:00:00", "%Y-%m-%d %H:%M:%S").unwrap()
         );
         let strength_strong = StrengthAnalyzer::new(&chart_strong).analyze();
         assert_eq!(strength_strong, DayMasterStrength::ExtremelyStrong);
@@ -88,7 +89,8 @@ mod tests {
             Pillar::new(TianGan::Jia, DiZhi::Mao), // Month
             Pillar::new(TianGan::Jia, DiZhi::Yin),
             Pillar::new(TianGan::Jia, DiZhi::Yin), // Hour
-            "male".to_string()
+            "male".to_string(),
+            NaiveDateTime::parse_from_str("2024-01-01 12:00:00", "%Y-%m-%d %H:%M:%S").unwrap()
         );
 
         let calc = TwelvePalacesCalculator::new(&chart);
@@ -113,7 +115,8 @@ mod tests {
             Pillar::new(TianGan::Ji, DiZhi::Chou),
             Pillar::new(TianGan::Bing, DiZhi::Yin),
             Pillar::new(TianGan::Bing, DiZhi::Yin),
-            "male".to_string()
+            "male".to_string(),
+            NaiveDateTime::parse_from_str("2024-01-01 12:00:00", "%Y-%m-%d %H:%M:%S").unwrap()
         );
 
         let analyzer = InteractionAnalyzer::new(&chart);
@@ -133,7 +136,8 @@ mod tests {
              Pillar::new(TianGan::Geng, DiZhi::Shen),
              Pillar::new(TianGan::Jia, DiZhi::Shen),
              Pillar::new(TianGan::Geng, DiZhi::Shen),
-             "male".to_string()
+             "male".to_string(),
+             NaiveDateTime::parse_from_str("2024-01-01 12:00:00", "%Y-%m-%d %H:%M:%S").unwrap()
         );
 
         let strength = StrengthAnalyzer::new(&chart).analyze();
@@ -172,7 +176,8 @@ mod tests {
              Pillar::new(TianGan::Jia, DiZhi::Zi),
              Pillar::new(TianGan::Jia, DiZhi::Zi), // Day
              Pillar::new(TianGan::Jia, DiZhi::Zi),
-             "male".to_string()
+             "male".to_string(),
+             NaiveDateTime::parse_from_str("2024-01-01 12:00:00", "%Y-%m-%d %H:%M:%S").unwrap()
         );
 
         let analyzer = VoidAnalyzer::new(&chart);
@@ -189,7 +194,8 @@ mod tests {
              Pillar::new(TianGan::Jia, DiZhi::Zi),
              Pillar::new(TianGan::Jia, DiZhi::Zi), // DM Jia
              Pillar::new(TianGan::Jia, DiZhi::Zi),
-             "male".to_string()
+             "male".to_string(),
+             NaiveDateTime::parse_from_str("2024-01-01 12:00:00", "%Y-%m-%d %H:%M:%S").unwrap()
         );
         let analyzer = SymbolicStarsAnalyzer::new(&chart);
         let stars = analyzer.analyze();
@@ -202,7 +208,8 @@ mod tests {
              Pillar::new(TianGan::Jia, DiZhi::Zi),
              Pillar::new(TianGan::Jia, DiZhi::Zi), // DM Jia
              Pillar::new(TianGan::Jia, DiZhi::Zi),
-             "male".to_string()
+             "male".to_string(),
+             NaiveDateTime::parse_from_str("2024-01-01 12:00:00", "%Y-%m-%d %H:%M:%S").unwrap()
         );
         let analyzer2 = SymbolicStarsAnalyzer::new(&chart2);
         let stars2 = analyzer2.analyze();
