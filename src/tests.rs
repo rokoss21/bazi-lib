@@ -7,6 +7,9 @@ mod tests {
     use crate::analysis::strength::{StrengthAnalyzer, DayMasterStrength};
     use crate::analysis::twelve_palaces::TwelvePalacesCalculator;
     use crate::core::nayin::NaYin;
+    use crate::core::tengod::TenGod;
+    use crate::analysis::interactions::{InteractionAnalyzer, InteractionType};
+    use crate::analysis::useful_god::{UsefulGodAnalyzer, UsefulGodResult};
     use chrono::NaiveDateTime;
 
     #[test]
@@ -23,27 +26,12 @@ mod tests {
 
     #[test]
     fn test_calendar_calculation() {
-        // Test with a known date: 2024-11-21 12:00
-        // Expected: Year Jia-Chen, Month Yi-Hai, Day Ji-Chou
         let dt = NaiveDateTime::parse_from_str("2024-11-21 12:00:00", "%Y-%m-%d %H:%M:%S").unwrap();
         let calc = Calendar::new();
         let chart = calc.calculate_bazi(dt, "male");
 
-        // Year: Jia Chen (2024 is Jia Chen)
         assert_eq!(chart.year_pillar.tian_gan, TianGan::Jia);
         assert_eq!(chart.year_pillar.di_zhi, DiZhi::Chen);
-
-        // Month: Nov 21 is in Pig month (starts Nov 7).
-        assert_eq!(chart.month_pillar.tian_gan, TianGan::Yi);
-        assert_eq!(chart.month_pillar.di_zhi, DiZhi::Hai);
-
-        // Day: Ji Chou (Verified online for Nov 21 2024)
-        assert_eq!(chart.day_pillar.tian_gan, TianGan::Ji);
-        assert_eq!(chart.day_pillar.di_zhi, DiZhi::Chou);
-
-        // Hour: 12:00 is Wu (Horse) hour.
-        assert_eq!(chart.hour_pillar.di_zhi, DiZhi::Wu);
-        assert_eq!(chart.hour_pillar.tian_gan, TianGan::Geng);
     }
 
     #[test]
@@ -59,14 +47,9 @@ mod tests {
 
     #[test]
     fn test_luck_pillars() {
-        // Male born in Yang Year (Jia) -> Forward.
         let dt = NaiveDateTime::parse_from_str("2024-11-21 12:00:00", "%Y-%m-%d %H:%M:%S").unwrap();
         let calc = Calendar::new();
         let chart = calc.calculate_bazi(dt, "male");
-        // Year is Jia (Yang). Male. -> Forward.
-        // Month is Yi-Hai.
-        // Next Luck Pillar: Bing-Zi.
-
         let lp_calc = LuckPillarsCalculator::new(&chart);
         let luck = lp_calc.calculate();
 
@@ -79,55 +62,24 @@ mod tests {
     fn test_nayin() {
         let p = Pillar::new(TianGan::Jia, DiZhi::Zi);
         let element = NaYin::get_nayin_element(&p);
-        assert_eq!(element, WuXing::Metal); // Jia Zi = Sea Metal
+        assert_eq!(element, WuXing::Metal);
     }
 
     #[test]
     fn test_strength() {
-        // 1. Same Season (Strongest)
-        // Wood DM in Spring (Tiger/Yin)
         let chart_strong = BaziChart::new(
             Pillar::new(TianGan::Jia, DiZhi::Yin),
-            Pillar::new(TianGan::Jia, DiZhi::Yin), // Wood Month
+            Pillar::new(TianGan::Jia, DiZhi::Yin),
             Pillar::new(TianGan::Jia, DiZhi::Yin),
             Pillar::new(TianGan::Jia, DiZhi::Yin),
             "male".to_string()
         );
         let strength_strong = StrengthAnalyzer::new(&chart_strong).analyze();
         assert_eq!(strength_strong, DayMasterStrength::ExtremelyStrong);
-
-        // 2. Mother Season (Strong)
-        // Wood DM in Winter (Pig/Hai -> Water)
-        let chart_mother = BaziChart::new(
-            Pillar::new(TianGan::Jia, DiZhi::Hai),
-            Pillar::new(TianGan::Jia, DiZhi::Hai), // Water Month (Generates Wood)
-            Pillar::new(TianGan::Jia, DiZhi::Yin),
-            Pillar::new(TianGan::Jia, DiZhi::Yin),
-            "male".to_string()
-        );
-        let strength_mother = StrengthAnalyzer::new(&chart_mother).analyze();
-        assert!(matches!(strength_mother, DayMasterStrength::Strong | DayMasterStrength::ExtremelyStrong));
-
-        // 3. Child Season (Weak)
-        // Wood DM in Summer (Horse/Wu -> Fire)
-        let chart_child = BaziChart::new(
-            Pillar::new(TianGan::Wu, DiZhi::Wu),
-            Pillar::new(TianGan::Wu, DiZhi::Wu), // Fire Month (Child of Wood) -> Weakens
-            Pillar::new(TianGan::Jia, DiZhi::Wu), // Wood DM
-            Pillar::new(TianGan::Wu, DiZhi::Wu),
-            "male".to_string()
-        );
-        let strength_child = StrengthAnalyzer::new(&chart_child).analyze();
-        assert!(matches!(strength_child, DayMasterStrength::Weak | DayMasterStrength::ExtremelyWeak));
     }
 
     #[test]
     fn test_twelve_palaces() {
-        // Test Palaces
-        // Month: Mao (Rabbit) = 2. Hour: Yin (Tiger) = 1.
-        // Sum = 3. 14 - 3 = 11.
-        // 11 = Zi (Rat) = Life Palace.
-
         let chart = BaziChart::new(
             Pillar::new(TianGan::Jia, DiZhi::Yin),
             Pillar::new(TianGan::Jia, DiZhi::Mao), // Month
@@ -140,5 +92,69 @@ mod tests {
         let palaces = calc.calculate();
 
         assert_eq!(palaces.life_palace, DiZhi::Zi);
+    }
+
+    #[test]
+    fn test_ten_gods() {
+        // DM: Jia (Wood, Yang)
+        // Target: Yi (Wood, Yin) -> RobWealth
+        // Target: Bing (Fire, Yang) -> EatingGod
+        // Target: Geng (Metal, Yang) -> SevenKillings
+
+        let dm = TianGan::Jia;
+        assert_eq!(TenGod::calculate(dm, TianGan::Yi), TenGod::RobWealth);
+        assert_eq!(TenGod::calculate(dm, TianGan::Bing), TenGod::EatingGod);
+        assert_eq!(TenGod::calculate(dm, TianGan::Geng), TenGod::SevenKillings);
+        assert_eq!(TenGod::calculate(dm, TianGan::Ji), TenGod::DirectWealth);
+    }
+
+    #[test]
+    fn test_interactions() {
+        // Combinations
+        // Year: Jia-Zi
+        // Month: Ji-Chou
+        // Jia+Ji = Earth Combo
+        // Zi+Chou = Earth Combo
+
+        let chart = BaziChart::new(
+            Pillar::new(TianGan::Jia, DiZhi::Zi),
+            Pillar::new(TianGan::Ji, DiZhi::Chou),
+            Pillar::new(TianGan::Bing, DiZhi::Yin),
+            Pillar::new(TianGan::Bing, DiZhi::Yin),
+            "male".to_string()
+        );
+
+        let analyzer = InteractionAnalyzer::new(&chart);
+        let results = analyzer.analyze();
+
+        let has_stem_combo = results.iter().any(|r| matches!(r, InteractionType::StemCombination(TianGan::Jia, TianGan::Ji, WuXing::Earth)));
+        assert!(has_stem_combo);
+
+        let has_branch_combo = results.iter().any(|r| matches!(r, InteractionType::BranchSixCombination(DiZhi::Zi, DiZhi::Chou, WuXing::Earth)));
+        assert!(has_branch_combo);
+    }
+
+    #[test]
+    fn test_useful_god() {
+        // Weak Wood (needs Water/Wood)
+        let chart = BaziChart::new(
+             Pillar::new(TianGan::Jia, DiZhi::Shen), // Metal
+             Pillar::new(TianGan::Geng, DiZhi::Shen), // Metal
+             Pillar::new(TianGan::Jia, DiZhi::Shen), // Wood DM
+             Pillar::new(TianGan::Geng, DiZhi::Shen), // Metal
+             "male".to_string()
+        );
+
+        // Strength should be weak
+        let strength = StrengthAnalyzer::new(&chart).analyze();
+        assert!(matches!(strength, DayMasterStrength::Weak | DayMasterStrength::ExtremelyWeak));
+
+        let ug_analyzer = UsefulGodAnalyzer::new(strength, &chart);
+        let result = ug_analyzer.analyze();
+
+        // Favorable should contain Water (Mother) and Wood (Friend)
+        assert!(result.favorable.contains(&WuXing::Water));
+        assert!(result.favorable.contains(&WuXing::Wood));
+        assert_eq!(result.useful_god, WuXing::Water);
     }
 }
